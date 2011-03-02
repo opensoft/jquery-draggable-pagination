@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Table Demo</title>
+
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui/jquery-ui-1.8.4.custom.min.js"></script>
+<link type="text/css" rel="stylesheet" href="jquery/jquery-ui/hot-sneaks/jquery-ui-1.8.5.custom.css">
+
+<script type="text/javascript" src="../jquery.drag-n-snap-paginator.js"></script>
+
+<style type="text/css">
+th, td {
+	font-size: 20px;
+	padding: 10px;
+}
+th {
+	text-align: left;
+}
+td {
+	height: 40px;
+}
+table {
+	border-spacing: 0px;
+}
+#demo {
+	width: 800px;
+}
+#title {
+	width:798px;
+	padding:10px 0;
+	margin: 0px;
+}
+#title span {
+	margin-left:180px;
+}
+#paginateBtn {
+	position:absolute;
+	top:10px;
+	left:10px;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+	$('#paginateBtn').button().click(function() {
+		$('#demo').paginate({
+			itemsPerPage : 7
+		});
+		$(this).remove();
+	});
+});
+</script>
+</head>
+<body>
+<button id="paginateBtn">Paginate</button>
+<h2 id="title" class="ui-widget-header ui-corner-top"><span>MOST POPULAR JQUERY PLUGINS</span></h2>
+<table id="demo" class="ui-widget-content ui-corner-bottom">
+	<thead>
+		<tr>
+			<th>Author</th>
+			<th>Title</th>
+			<th>Posted</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>davidwalsh</td>
+			<td>jQuery Link Nudge Plugin</td>
+			<td><em>42 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>kjak</td>
+			<td>Exposure</td>
+			<td><em>11 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>VTJamie</td>
+			<td>McApple</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>patrickmjones</td>
+			<td>FollowFocus</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>n0nick</td>
+			<td>Password Strength</td>
+			<td><em>35 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>sohnee</td>
+			<td>jQuery Charts</td>
+			<td><em>2 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>oaka</td>
+			<td>Mouse Over Animation for Text</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>a.karimzadeh</td>
+			<td>.NET</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>joemsak</td>
+			<td>AutoFill Form Fields</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>shibbard</td>
+			<td>popBox</td>
+			<td><em>8 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>anders.ekdahl</td>
+			<td>AD Gallery</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>Don.Magee</td>
+			<td>tableCorners</td>
+			<td><em>31 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>jbdemonte</td>
+			<td>Barcode Plugin</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>jakelauer</td>
+			<td>Cusor Hover</td>
+			<td><em>23 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>ferric84</td>
+			<td>Related Selects</td>
+			<td><em>47 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>EvgeniyDolzhenko</td>
+			<td>selector_initializers</td>
+			<td><em>15 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>alexandrezara</td>
+			<td>jFormVal</td>
+			<td><em>10 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>heloril</td>
+			<td>NotesForLightBox</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>raff</td>
+			<td>Lens Flare</td>
+			<td><em>24 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>accursoft</td>
+			<td>On-Screen Keyboard</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>zazabe</td>
+			<td>Box plugin : sliding boxes</td>
+			<td><em>1 week</em> ago</td>
+		</tr>
+		<tr>
+			<td>daepark</td>
+			<td>jquery postmessage plugin</td>
+			<td><em>35 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>greynor</td>
+			<td>Quicktime Event</td>
+			<td><em>27 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>brantwills</td>
+			<td>hyjack select</td>
+			<td><em>2 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>leperisland</td>
+			<td>MyLive CSS Swapper</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>FabioFranzini</td>
+			<td>JNotify (JQuery Notification Engine)</td>
+			<td><em>37 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>DJZiaK</td>
+			<td>Sliding Panel</td>
+			<td><em>21 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>kirk</td>
+			<td>jImagePreloader</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>BOX</td>
+			<td>Pause / Resume Animation (animate)</td>
+			<td><em>39 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>joseph@thatgraf...</td>
+			<td>shadowTilt</td>
+			<td><em>31 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>optikalefx</td>
+			<td>keyhold</td>
+			<td><em>23 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>vaakash</td>
+			<td>Collapser</td>
+			<td><em>8 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>henrique.rangel</td>
+			<td>JH - YouTube Player</td>
+			<td><em>41 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>slenzi</td>
+			<td>jQuery Frontier Calendar</td>
+			<td><em>16 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>DevinWalker</td>
+			<td>jFlow Plus</td>
+			<td><em>10 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>dom111</td>
+			<td>Ajaxify</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>Duff</td>
+			</div>
+			<td>Outline</td>
+			<td><em>34 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>edwardhotchkiss</td>
+			<td>Color Fade</td>
+			<td><em>11 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>powerbuoy</td>
+			<td>Equal Height</td>
+			<td><em>2 years</em> ago</td>
+		</tr>
+		<tr>
+			<td>mkruse</td>
+			<td>ContextMenu Plugin</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>brandon</td>
+			<td>outerhtml</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>juliend</td>
+			<td>Barousel</td>
+			<td><em>12 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>SteamDev</td>
+			<td>Snippet</td>
+			<td><em>2 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>powerbuoy</td>
+			<td>Equal Height</td>
+			<td><em>2 years</em> ago</td>
+		</tr>
+		<tr>
+			<td>Tomás Corral Casas</td>
+			<td>Object Oriented CSS</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>uzbekjon</td>
+			<td>Google Feeds API - jQuery plugin</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>artur.heinze</td>
+			<td>Growl for the net &amp; jQuery</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>jordi vila</td>
+			<td>JSON dropdownlist</td>
+			<td><em>28 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>jSkoop</td>
+			<td>jRedirect</td>
+			<td><em>20 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>icograma</td>
+			<td>Form Validation With Hints</td>
+			<td><em>13 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>QuackFuzed</td>
+			<td>dynamicField</td>
+			<td><em>38 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>Ben Alman</td>
+			<td>jQuery :attached, :detached selectors</td>
+			<td><em>30 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>sohnee</td>
+			<td>jQuery Easy Validation</td>
+			<td><em>4 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>ktan</td>
+			<td>jHelperTip</td>
+			<td><em>2 years</em> ago</td>
+		</tr>
+		<tr>
+			<td>riverside</td>
+			<td>Easy TagCloud</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>James Studdart</td>
+			<td>CentreIt</td>
+			<td><em>32 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>FrD</td>
+			<td>dropmenu</td>
+			<td><em>24 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>chifliiiii</td>
+			<td>JcubeiT Plugin</td>
+			<td><em>16 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>arsenic2005</td>
+			<td>RLight</td>
+			<td><em>9 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>sideroad</td>
+			<td>jQuery SideBar</td>
+			<td><em>40 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>sohnee</td>
+			<td>jQuery Side Content</td>
+			<td><em>32 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>Timpi</td>
+			<td>Easy FeedFetcher</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>kunalbabre</td>
+			<td>HTML Table to CSV</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+		<tr>
+			<td>stealthdave</td>
+			<td>dotString</td>
+			<td><em>2 years</em> ago</td>
+		</tr>
+		<tr>
+			<td>sohnee</td>
+			<td>jQuery Mobile Device Drag And Drop</td>
+			<td><em>12 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>kbwood</td>
+			<td>World Calendars</td>
+			<td><em>45 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>cyphun</td>
+			<td>Sweet Menu</td>
+			<td><em>3 weeks</em> ago</td>
+		</tr>
+		<tr>
+			<td>bram.stein</td>
+			<td>Text Alignment</td>
+			<td><em>1 year</em> ago</td>
+		</tr>
+	</tbody>
+</table>
+</body>
+</html>

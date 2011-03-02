@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Drag-n-Snap Paginator</title>
+
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+
+<!-- jQuery UI - redmond theme -->
+<script type="text/javascript" src="jquery/jquery-ui/jquery-ui-1.8.4.custom.min.js"></script>
+<link type="text/css" rel="stylesheet" href="jquery/jquery-ui/hot-sneaks/jquery-ui-1.8.5.custom.css">
+
+<style type="text/css">
+#demos {
+	width:1080px;
+}
+iframe {
+	border:none;
+}
+div.demo p {
+	margin-top:0;
+}
+#android {
+	padding:0px;
+	margin:0px;
+}
+#android-tab {
+	height:42px;
+	padding:0px;
+	margin:0px;
+	overflow:hidden;
+}
+#android-tab img {
+	margin:8px 10px 0px;
+}
+</style>
+<script type="text/javascript">
+$(function() {
+	$("#demos").tabs();
+});
+</script>
+</head>
+<body>
+
+<div id="demos">
+	<ul>
+		<li><a href="#api">API Demo</a></li>
+		<li><a href="#table">Table Demo</a></li>
+		<li><a id="android-tab" href="#android"><img src="assets/droid-head.png" /></a></li>
+	</ul>
+	<div id="api" class="demo api">
+		<p>The paginated widget has methods that can be used to create custom navigation.<br />
+		   The buttons below work by calling the widget's "goto", "next", "prev", "page", and "has" methods.  
+		</p>
+		<iframe src="demo-api.html" width="1000" height="600"></iframe>
+	</div>
+	<div id="table" class="demo table">
+		<p>Tables get special treatment to preserve columns and headers.<br />
+		   Push the "Paginate" button to activate the widget.
+		</p>
+		<iframe src="demo-table.html" width="1000" height="600"></iframe>
+	</div>
+	<div id="android" class="demo android">
+		<iframe src="demo-android.html" width="1000" height="755"></iframe>
+	</div>
+</div>
+
+</body>
+</html>
