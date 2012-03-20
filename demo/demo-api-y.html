@@ -24,30 +24,30 @@
 		margin-bottom:10px;
 		padding:5px 5px 0 5px;
 	}
-	#demo {
+	#demo-y {
 		margin:0;
 		padding:0;
 		float:left;
 		overflow:auto;
 	}
-	#demo, #buttons {
+	#demo-y, #buttons-y {
 		width:500px;
 	}	
 	.preview {
 		float:left;
 		margin-right:20px;
 	}
-	#buttons {
+	#buttons-y {
 		margin-bottom:10px;
 	}
-	#buttons button {
+	#buttons-y button {
 		margin:5px;
 	}
 	</style>
 	<script type="text/javascript">
 	$(function(){
-		var widget = $('#demo').paginate({itemsPerPage:4, pageSpacing:50, axis: 'x'}).disableTextSelect();
-		var buttons = $('#buttons');
+		var widget = $('#demo-y').paginate({itemsPerPage:4, pageSpacing:0, axis: 'y'}).disableTextSelect();
+		var buttons = $('#buttons-y');
 		var btnPrev = $('<button>PREV</button>').appendTo(buttons).click(function(){ widget.paginate('prev') });
 		var btn1 = $('<button>1</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 0) });
 		var btn2 = $('<button>2</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 1) });
@@ -73,8 +73,8 @@
 	</script>
 </head>
 <body>
-<div id="buttons" class="ui-widget-content ui-corner-all"></div>
-<ul id="demo">
+<div id="buttons-y" class="ui-widget-content ui-corner-all"></div>
+<ul id="demo-y">
 	<li>
 		<div class="preview">
 			<a href="http://www.csszengarden.com/?cssfile=213/213.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/213.jpg" width="160" height="104" alt="Under the Sea!"></a>

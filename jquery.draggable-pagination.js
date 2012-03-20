@@ -8,7 +8,6 @@
  * TODO add item access functions, such as widget.paginate('get', page, index)?
  * TODO should this widget take a width, or just use info from DOM style?
  * TODO should this widget take a data array and factory function to make children from? (could be runtime improvement over large async-fetched data
- * TODO choose scroll axis x/y
  * TODO make slide in initially to let user know interaction exists (configurable)
  * TODO document custom events: page-change, drag, snap
  * TODO refactor to functions more
@@ -64,8 +63,9 @@ $.fn.paginate = function() {
 	 * Initializes widget.
 	 */
 	function initWidget(widget, options) {
-		var defaults = {  
-			width: widget.width(),  
+		var defaults = {
+            width: widget.width(),
+            height: 'auto',
 			itemsPerPage: 5,
 			startPage: 0, 
 			buttons: true,
@@ -75,9 +75,10 @@ $.fn.paginate = function() {
 			pageElement: 'div',
 			commonElements: [],
 			animationSpeed: 250, 
-			gestureThreshold: 1000
+			gestureThreshold: 1000,
+            axis: 'x'
 		};
-		var options = $.extend(defaults, options); 
+		var options = $.extend(defaults, options);
 		
 		var widget, container, items;
 		
@@ -118,44 +119,66 @@ $.fn.paginate = function() {
 		
 		// TODO document this better - wrapping container in a div to act as mask because <td> overflow:hidden doesn't work
 		// TODO this is only needed on tables - can we refactor it?
-		container = $('<div>').addClass('mask').css('margin', 0).css('padding', 0).appendTo(container);
-		
-		// init widget
-		widget.data('page', options.startPage)
-		      .data('pageCount', Math.ceil(items.length / options.itemsPerPage));
-		container.css('overflow', 'hidden');
-		
+
+        if (options.axis == 'x') {
+            container = $('<div>').addClass('mask').css('margin', 0).css('padding', 0).appendTo(container);
+        }
+
+        // init widget
+        widget.data('page', options.startPage)
+              .data('pageCount', Math.ceil(items.length / options.itemsPerPage));
+        container.css('overflow', 'hidden');
+
 		// =========================
 		// PAGINATION
 		// =========================
-		
-		// make page containerrest
-		var pageContainer = $('<div/>')
-			.addClass('page-container')
-			.width(Math.ceil(items.length/options.itemsPerPage) * (options.width + options.pageSpacing))
-		    .css('overflow', 'auto').css('margin', 0).css('padding', 0)
-		    .appendTo(container);
-		
-		var page;
-		items.each(function(i) {
-			item = $(this);
-			
-			// add jquery-ui theming
-			item.addClass('ui-widget-content ui-corner-all')
-			    .addClass(options.itemClassName);
-			   
-	        // paginate
-	        if (i % options.itemsPerPage == 0) {
-	            page = $('<'+defaults.pageElement+'/>');
-	            $(defaults.commonElements).each(function(){ $(this).clone().appendTo(page) });
-	            page.addClass(options.pageClassName)
-	                .width(options.width)
-	                .css('float', 'left')
-	                .css('margin-right', options.pageSpacing);
-	            pageContainer.append(page);
-	        }
-	        page.append(item);
-		});
+        var pageContainer;
+        if (options.axis == 'x') {
+            // make page containerrest
+            pageContainer = $('<div/>')
+                .addClass('page-container')
+                .width(Math.ceil(items.length/options.itemsPerPage) * (options.width + options.pageSpacing))
+                .css('overflow', 'auto').css('margin', 0).css('padding', 0)
+                .appendTo(container);
+
+        } else if (options.axis == 'y') {
+            var relativeContainer = $('<div/>')
+                .addClass('relative-container')
+                .css('position', 'relative').css('overflow', 'hidden')
+                .appendTo(container);
+
+            pageContainer = $('<div/>')
+                .addClass('page-container')
+                .css('overflow', 'auto').css('position', 'absolute').css('top', 0)
+                .width(container.width())
+                .appendTo(relativeContainer);
+        }
+
+        var page;
+        items.each(function(i) {
+            item = $(this);
+
+            // add jquery-ui theming
+            item.addClass('ui-widget-content ui-corner-all')
+                .addClass(options.itemClassName);
+
+            // paginate
+            if (i % options.itemsPerPage == 0) {
+                page = $('<'+defaults.pageElement+'/>');
+                $(defaults.commonElements).each(function(){ $(this).clone().appendTo(page) });
+                page.addClass(options.pageClassName)
+                    .width(options.width)
+                    .css('float', 'left')
+                    .css('margin-right', options.pageSpacing);
+                pageContainer.append(page);
+            }
+            page.append(item);
+        });
+
+        var pageHeight = pageContainer.children().eq(0).height();
+        if (relativeContainer !== undefined) {
+                relativeContainer.height((options.height !== 'auto')? options.height : pageHeight);
+        }
 		
 		function hasPage(i) {
 			return (i >= 0 && i < widget.data('pageCount'));
@@ -164,10 +187,22 @@ $.fn.paginate = function() {
 			if (!hasPage(i)) {
 				return false; // TODO throw/error?
 			}
-			var margin = i * (options.width + options.pageSpacing) * -1;
-			widget.trigger({type:'page-change', oldPage:widget.data('page'), newPage:i, pixelDelta:parseInt(pageContainer.css('margin-left')) - margin});
-			widget.data('page', i);
-			pageContainer.animate({marginLeft: margin}, options.animationSpeed);
+
+            var pixelDelta;
+            var oldPage = widget.data('page');
+
+            if (options.axis == 'x') {
+                var margin = i * (options.width + options.pageSpacing) * -1;
+			    pageContainer.animate({marginLeft: margin}, options.animationSpeed);
+                pixelDelta = parseInt(pageContainer.css('margin-left')) - margin;
+            } else {
+                var top = i * (pageHeight + options.pageSpacing) * -1;
+                pageContainer.animate({top: top}, options.animationSpeed);
+                pixelDelta = parseInt(pageContainer.css('top')) - top;
+            }
+
+            widget.data('page', i);
+            widget.trigger({type: 'page-change', oldPage: oldPage, newPage: i, pixelDelta: pixelDelta});
 		}
 		widget.data('goto', goToPage).data('has', hasPage);
 		
@@ -181,10 +216,18 @@ $.fn.paginate = function() {
 		container.bind('mousedown', function(e) {
 			widget.trigger({type:'drag', dragStartEvent:e});
 			widget.data('startEvent', e);
-			var initial = parseInt(pageContainer.css('margin-left')) - e.pageX;
-			container.bind('mousemove', function(e) {
-				pageContainer.css('margin-left', initial + e.pageX);
-			});
+            var initial;
+            if (options.axis == 'x') {
+                initial = parseInt(pageContainer.css('margin-left')) - e.pageX;
+                container.bind('mousemove', function(e) {
+                    pageContainer.css('margin-left', initial + e.pageX);
+                });
+            } else if (options.axis == 'y') {
+                initial = parseInt(pageContainer.css('top')) - e.pageY;
+                container.bind('mousemove', function(e) {
+                    pageContainer.css('top', initial + e.pageY);
+                });
+            }
 		}).bind('mouseup mouseleave', function(e) {
 			var startEvent = widget.data('startEvent');
 			if (startEvent) {
@@ -193,8 +236,9 @@ $.fn.paginate = function() {
 				
 				var page = widget.data('page');
 				var dpx = e.pageX - startEvent.pageX;
+                var dpy = e.pageY - startEvent.pageY;
 				var dt = e.timeStamp - startEvent.timeStamp;
-				var speed = dpx / dt * 1000;
+				var speed = (options.axis == 'x') ? dpx / dt * 1000 : dpy / dt * 1000;
 				
 				widget.trigger({type:'snap', dragStartEvent:startEvent, dragStopEvent:e, dragPixels:dpx, dragDuration:dt, dragSpeed:speed});
 
