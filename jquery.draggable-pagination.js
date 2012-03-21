@@ -134,14 +134,14 @@ $.fn.paginate = function() {
         // =========================
         var pageContainer;
         if (options.axis == 'x') {
-            // make page containerrest
+            // make page container
             pageContainer = $('<div/>')
                 .addClass('page-container')
                 .width(Math.ceil(items.length/options.itemsPerPage) * (options.width + options.pageSpacing))
                 .css('overflow', 'auto').css('margin', 0).css('padding', 0)
                 .appendTo(container);
 
-        } else if (options.axis == 'y') {
+        } else {
             var relativeContainer = $('<div/>')
                 .addClass('relative-container')
                 .css('position', 'relative').css('overflow', 'hidden')
@@ -222,7 +222,7 @@ $.fn.paginate = function() {
                 container.bind('mousemove', function(e) {
                     pageContainer.css('margin-left', initial + e.pageX);
                 });
-            } else if (options.axis == 'y') {
+            } else {
                 initial = parseInt(pageContainer.css('top')) - e.pageY;
                 container.bind('mousemove', function(e) {
                     pageContainer.css('top', initial + e.pageY);
