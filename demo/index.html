@@ -13,43 +13,43 @@
 
 <style type="text/css">
 #demos {
-	width:1080px;
+    width:1080px;
 }
 iframe {
-	border:none;
+    border:none;
 }
 div.demo p {
-	margin-top:0;
+    margin-top:0;
 }
 #android {
-	padding:0px;
-	margin:0px;
+    padding:0px;
+    margin:0px;
 }
 #android-tab {
-	height:42px;
-	padding:0px;
-	margin:0px;
-	overflow:hidden;
+    height:42px;
+    padding:0px;
+    margin:0px;
+    overflow:hidden;
 }
 #android-tab img {
-	margin:8px 10px 0px;
+    margin:8px 10px 0px;
 }
 </style>
 <script type="text/javascript">
 $(function() {
-	$("#demos").tabs();
+    $("#demos").tabs();
 });
 </script>
 </head>
 <body>
 
 <div id="demos">
-	<ul>
+    <ul>
         <li><a href="#api-x">API Demo (X axis)</a></li>
         <li><a href="#api-y">API Demo (Y axis)</a></li>
-		<li><a href="#table">Table Demo</a></li>
-		<li><a id="android-tab" href="#android"><img src="assets/droid-head.png" /></a></li>
-	</ul>
+        <li><a href="#table">Table Demo</a></li>
+        <li><a id="android-tab" href="#android"><img src="assets/droid-head.png" /></a></li>
+    </ul>
     <div id="api-x" class="demo api-x">
         <p>The paginated widget has methods that can be used to create custom navigation.<br />
             The buttons below work by calling the widget's "goto", "next", "prev", "page", and "has" methods.
@@ -62,15 +62,15 @@ $(function() {
         </p>
         <iframe src="demo-api-y.html" width="1000" height="600"></iframe>
     </div>
-	<div id="table" class="demo table">
-		<p>Tables get special treatment to preserve columns and headers.<br />
-		   Push the "Paginate" button to activate the widget.
-		</p>
-		<iframe src="demo-table.html" width="1000" height="600"></iframe>
-	</div>
-	<div id="android" class="demo android">
-		<iframe src="demo-android.html" width="1000" height="755"></iframe>
-	</div>
+    <div id="table" class="demo table">
+        <p>Tables get special treatment to preserve columns and headers.<br />
+           Push the "Paginate" button to activate the widget.
+        </p>
+        <iframe src="demo-table.html" width="1000" height="600"></iframe>
+    </div>
+    <div id="android" class="demo android">
+        <iframe src="demo-android.html" width="1000" height="755"></iframe>
+    </div>
 </div>
 
 </body>

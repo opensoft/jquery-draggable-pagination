@@ -16,109 +16,109 @@
  */
 (function($){  
 $.fn.paginate = function() {
-	
-	// single widget
-	if (this.length == 1) {
-		return dispatch($(this[0]), arguments);
-	}
-	
-	// collection of widgets
-	var r = {};
-	for (i in this) {
-		r[i] = dispatch(this[i], arguments);
-	}
-	return r;
-	
-	/**
-	 * Dispatches to method or initializes widget.
-	 */
-	function dispatch(widget, args) {
-		if (widget.data('isPaginated')) {
-			switch (args[0]) {
-				case 'prev':
-					if (widget.data('has')(widget.data('page') - 1))
-						return widget.data('goto')(widget.data('page') - 1);
-					break;
-				case 'next':
-					if (widget.data('has')(widget.data('page') + 1))
-						return widget.data('goto')(widget.data('page') + 1);
-					break;
-				case 'goto':
-					return widget.data('goto')(args[1]);
-				case 'has':
-					return widget.data('has')(args[1]);
-				case 'count':
-					return widget.data('pageCount');
-				case 'page':
-					return widget.data('page');
-			}
-			// TODO throw/error on default?
-			return widget;
-		} else {
-			return initWidget(widget, args[0]);
-		}
-	}
-	
-	/**
-	 * Initializes widget.
-	 */
-	function initWidget(widget, options) {
-		var defaults = {
+
+    // single widget
+    if (this.length == 1) {
+        return dispatch($(this[0]), arguments);
+    }
+
+    // collection of widgets
+    var r = {};
+    for (i in this) {
+        r[i] = dispatch(this[i], arguments);
+    }
+    return r;
+
+    /**
+     * Dispatches to method or initializes widget.
+     */
+    function dispatch(widget, args) {
+        if (widget.data('isPaginated')) {
+            switch (args[0]) {
+                case 'prev':
+                    if (widget.data('has')(widget.data('page') - 1))
+                        return widget.data('goto')(widget.data('page') - 1);
+                    break;
+                case 'next':
+                    if (widget.data('has')(widget.data('page') + 1))
+                        return widget.data('goto')(widget.data('page') + 1);
+                    break;
+                case 'goto':
+                    return widget.data('goto')(args[1]);
+                case 'has':
+                    return widget.data('has')(args[1]);
+                case 'count':
+                    return widget.data('pageCount');
+                case 'page':
+                    return widget.data('page');
+            }
+            // TODO throw/error on default?
+            return widget;
+        } else {
+            return initWidget(widget, args[0]);
+        }
+    }
+
+    /**
+     * Initializes widget.
+     */
+    function initWidget(widget, options) {
+        var defaults = {
             width: widget.width(),
             height: 'auto',
-			itemsPerPage: 5,
-			startPage: 0, 
-			buttons: true,
-			itemClassName: 'list-item',
-			pageClassName: 'page',
-			pageSpacing: 0,
-			pageElement: 'div',
-			commonElements: [],
-			animationSpeed: 250, 
-			gestureThreshold: 1000,
+            itemsPerPage: 5,
+            startPage: 0,
+            buttons: true,
+            itemClassName: 'list-item',
+            pageClassName: 'page',
+            pageSpacing: 0,
+            pageElement: 'div',
+            commonElements: [],
+            animationSpeed: 250,
+            gestureThreshold: 1000,
             axis: 'x'
-		};
-		var options = $.extend(defaults, options);
-		
-		var widget, container, items;
-		
-		// tables have special treatment
-		// widget must not change type so future DOM selections retain attached data 
-		if (widget.is('table')) {
-			defaults.pageElement = 'table';
+        };
+        var options = $.extend(defaults, options);
 
-			// make columns headers from <th> in first <tr>
-			var headers = widget.find('tr:first').children('th');
-			if (headers.length > 0) {
-				var headerRow = $('<tr/>');
-				var thead = $('<thead/>').append(headerRow);
-				headers.each(function() {
-					header = $(this);
-					header.css('width', header.width()+'px');
-					defaults.commonElements.push($('<col/>').width(header.outerWidth())); // TODO copy all other th attrs?
-				});
-				headers.parent().remove();
-				headerRow.append(headers);
-			}
-			widget.children('thead').remove();
-			widget.find('tr:first').has('th').remove();
-			
-			// get list items
-			var items = widget.find('tr');
-			container = $('<td/>').addClass('container').attr('colspan', headers.length + 1).css('padding', 0);
-			var tbody = $('<tbody/>').append($('<tr/>').append(container));
-			
-			widget.children('tbody').remove();
-			widget.append(thead).append(tbody);
-			
-		// everything else
-		} else {
-			container = widget;
-			items = widget.children();
-		}
-		
-		// TODO document this better - wrapping container in a div to act as mask because <td> overflow:hidden doesn't work
-		// TODO this is only needed on tables - can we refactor it?
+        var widget, container, items;
+
+        // tables have special treatment
+        // widget must not change type so future DOM selections retain attached data
+        if (widget.is('table')) {
+            defaults.pageElement = 'table';
+
+            // make columns headers from <th> in first <tr>
+            var headers = widget.find('tr:first').children('th');
+            if (headers.length > 0) {
+                var headerRow = $('<tr/>');
+                var thead = $('<thead/>').append(headerRow);
+                headers.each(function() {
+                    header = $(this);
+                    header.css('width', header.width()+'px');
+                    defaults.commonElements.push($('<col/>').width(header.outerWidth())); // TODO copy all other th attrs?
+                });
+                headers.parent().remove();
+                headerRow.append(headers);
+            }
+            widget.children('thead').remove();
+            widget.find('tr:first').has('th').remove();
+
+            // get list items
+            var items = widget.find('tr');
+            container = $('<td/>').addClass('container').attr('colspan', headers.length + 1).css('padding', 0);
+            var tbody = $('<tbody/>').append($('<tr/>').append(container));
+
+            widget.children('tbody').remove();
+            widget.append(thead).append(tbody);
+
+        // everything else
+        } else {
+            container = widget;
+            items = widget.children();
+        }
+
+        // TODO document this better - wrapping container in a div to act as mask because <td> overflow:hidden doesn't work
+        // TODO this is only needed on tables - can we refactor it?
 
         if (options.axis == 'x') {
             container = $('<div>').addClass('mask').css('margin', 0).css('padding', 0).appendTo(container);
@@ -129,9 +129,9 @@ $.fn.paginate = function() {
               .data('pageCount', Math.ceil(items.length / options.itemsPerPage));
         container.css('overflow', 'hidden');
 
-		// =========================
-		// PAGINATION
-		// =========================
+        // =========================
+        // PAGINATION
+        // =========================
         var pageContainer;
         if (options.axis == 'x') {
             // make page containerrest
@@ -179,21 +179,21 @@ $.fn.paginate = function() {
         if (relativeContainer !== undefined) {
                 relativeContainer.height((options.height !== 'auto')? options.height : pageHeight);
         }
-		
-		function hasPage(i) {
-			return (i >= 0 && i < widget.data('pageCount'));
-		}
-		function goToPage(i) {
-			if (!hasPage(i)) {
-				return false; // TODO throw/error?
-			}
+
+        function hasPage(i) {
+            return (i >= 0 && i < widget.data('pageCount'));
+        }
+        function goToPage(i) {
+            if (!hasPage(i)) {
+                return false; // TODO throw/error?
+            }
 
             var pixelDelta;
             var oldPage = widget.data('page');
 
             if (options.axis == 'x') {
                 var margin = i * (options.width + options.pageSpacing) * -1;
-			    pageContainer.animate({marginLeft: margin}, options.animationSpeed);
+                pageContainer.animate({marginLeft: margin}, options.animationSpeed);
                 pixelDelta = parseInt(pageContainer.css('margin-left')) - margin;
             } else {
                 var top = i * (pageHeight + options.pageSpacing) * -1;
@@ -203,19 +203,19 @@ $.fn.paginate = function() {
 
             widget.data('page', i);
             widget.trigger({type: 'page-change', oldPage: oldPage, newPage: i, pixelDelta: pixelDelta});
-		}
-		widget.data('goto', goToPage).data('has', hasPage);
-		
-		
-		// =========================
-		// DRAG N SNAP
-		// =========================
-		// Mousedown allows the container to move horizontally with the drag.
-		// Mouseup or mouseleave snaps the container to the nearest page and 
-		// stops the container movement.
-		container.bind('mousedown', function(e) {
-			widget.trigger({type:'drag', dragStartEvent:e});
-			widget.data('startEvent', e);
+        }
+        widget.data('goto', goToPage).data('has', hasPage);
+
+
+        // =========================
+        // DRAG N SNAP
+        // =========================
+        // Mousedown allows the container to move horizontally with the drag.
+        // Mouseup or mouseleave snaps the container to the nearest page and
+        // stops the container movement.
+        container.bind('mousedown', function(e) {
+            widget.trigger({type:'drag', dragStartEvent:e});
+            widget.data('startEvent', e);
             var initial;
             if (options.axis == 'x') {
                 initial = parseInt(pageContainer.css('margin-left')) - e.pageX;
@@ -228,49 +228,49 @@ $.fn.paginate = function() {
                     pageContainer.css('top', initial + e.pageY);
                 });
             }
-		}).bind('mouseup mouseleave', function(e) {
-			var startEvent = widget.data('startEvent');
-			if (startEvent) {
-				widget.removeData('startEvent');
-				container.unbind('mousemove');
-				
-				var page = widget.data('page');
-				var dpx = e.pageX - startEvent.pageX;
+        }).bind('mouseup mouseleave', function(e) {
+            var startEvent = widget.data('startEvent');
+            if (startEvent) {
+                widget.removeData('startEvent');
+                container.unbind('mousemove');
+
+                var page = widget.data('page');
+                var dpx = e.pageX - startEvent.pageX;
                 var dpy = e.pageY - startEvent.pageY;
-				var dt = e.timeStamp - startEvent.timeStamp;
-				var speed = (options.axis == 'x') ? dpx / dt * 1000 : dpy / dt * 1000;
-				
-				widget.trigger({type:'snap', dragStartEvent:startEvent, dragStopEvent:e, dragPixels:dpx, dragDuration:dt, dragSpeed:speed});
+                var dt = e.timeStamp - startEvent.timeStamp;
+                var speed = (options.axis == 'x') ? dpx / dt * 1000 : dpy / dt * 1000;
 
-				// flicked
-				if (Math.abs(speed) >= options.gestureThreshold) {
-					if (speed < 0 && page < widget.data('pageCount') - 1) {
-						return goToPage(page + 1);
-					} else if (speed > 0 && page > 0) {
-						return goToPage(page - 1);
-					}
-				
-				// dragged
-				} else {
-					var delta = dpx / options.width;
-					if (delta < -0.5 && page < widget.data('pageCount') - 1) {
-						return goToPage(page + 1);
-					} else if (delta > 0.5 && page > 0) {
-						return goToPage(page - 1);
-					}
-				}
-				
-				goToPage(page);
-			}
-		});
-		
-		// configure widget
-		container.width(pageContainer.children(':first').outerWidth());
-		pageContainer.css('margin-left', options.startPage * (options.width + options.pageSpacing) * -1);
-		widget.data('isPaginated', true);
-		
-		return widget;
-	}
+                widget.trigger({type:'snap', dragStartEvent:startEvent, dragStopEvent:e, dragPixels:dpx, dragDuration:dt, dragSpeed:speed});
 
-	
+                // flicked
+                if (Math.abs(speed) >= options.gestureThreshold) {
+                    if (speed < 0 && page < widget.data('pageCount') - 1) {
+                        return goToPage(page + 1);
+                    } else if (speed > 0 && page > 0) {
+                        return goToPage(page - 1);
+                    }
+
+                // dragged
+                } else {
+                    var delta = dpx / options.width;
+                    if (delta < -0.5 && page < widget.data('pageCount') - 1) {
+                        return goToPage(page + 1);
+                    } else if (delta > 0.5 && page > 0) {
+                        return goToPage(page - 1);
+                    }
+                }
+
+                goToPage(page);
+            }
+        });
+
+        // configure widget
+        container.width(pageContainer.children(':first').outerWidth());
+        pageContainer.css('margin-left', options.startPage * (options.width + options.pageSpacing) * -1);
+        widget.data('isPaginated', true);
+
+        return widget;
+    }
+
+
 }})(jQuery);

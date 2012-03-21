@@ -10,139 +10,139 @@
 
 <script type="text/javascript">
 $(function(){
-	$(document).disableTextSelect();
-	var background = $('#droid-background');
-	var speed = 175;
-	background.css('margin-left', -190);
-	var widget = $('#droid-desktop').paginate({itemsPerPage:4, startPage:2, animationSpeed:speed});
-	var ratio = .3;
-	
-	widget.bind('drag', function(e){
-		var initial = parseInt(background.css('margin-left')) - (e.dragStartEvent.pageX * ratio);
-		$(window).bind('mousemove', function(e) {
-			background.css('margin-left', initial + (e.pageX * ratio));
-		});
-	}).bind('snap', function(){
-		$(window).unbind('mousemove');
-	}).bind('page-change', function(e){
-		background.animate({marginLeft: parseInt(background.css('margin-left')) - (e.pixelDelta * ratio)}, speed);
-	});
+    $(document).disableTextSelect();
+    var background = $('#droid-background');
+    var speed = 175;
+    background.css('margin-left', -190);
+    var widget = $('#droid-desktop').paginate({itemsPerPage:4, startPage:2, animationSpeed:speed});
+    var ratio = .3;
+
+    widget.bind('drag', function(e){
+        var initial = parseInt(background.css('margin-left')) - (e.dragStartEvent.pageX * ratio);
+        $(window).bind('mousemove', function(e) {
+            background.css('margin-left', initial + (e.pageX * ratio));
+        });
+    }).bind('snap', function(){
+        $(window).unbind('mousemove');
+    }).bind('page-change', function(e){
+        background.animate({marginLeft: parseInt(background.css('margin-left')) - (e.pixelDelta * ratio)}, speed);
+    });
 });
 </script>
 <style type="text/css">
 html, body {
-	margin:0;
-	padding:0;
+    margin:0;
+    padding:0;
 }
 #droid-container {
-	width:406px;
-	margin:auto;
+    width:406px;
+    margin:auto;
 }
 #droid {
-	background: url("assets/droid-phone.png") no-repeat;
-	width: 406px;
-	height: 753px;
+    background: url("assets/droid-phone.png") no-repeat;
+    width: 406px;
+    height: 753px;
 }
 #droid, 
 #droid-desktop, 
 #droid-background-mask {
-	position: absolute;
+    position: absolute;
 }
 #droid-background-mask {
-	overflow:hidden;
+    overflow:hidden;
 }
 #droid-desktop,
 #droid-background-mask {
-	margin:125px 0 0 52px;
-	width:300px;
+    margin:125px 0 0 52px;
+    width:300px;
 }
 #droid-desktop, 
 .droid-row,
 .droid-row-item.fullrow {
-	width:300px;
+    width:300px;
 }
 .droid-row, .droid-row-item {
-	height:100px;
-	overflow:hidden;
+    height:100px;
+    overflow:hidden;
 }
 .droid-row-item {
-	width:75px;
-	text-align:center;
-	float:left;
-	margin-top:15px;
+    width:75px;
+    text-align:center;
+    float:left;
+    margin-top:15px;
 }
 #droid-desktop {
-	z-index:100;
+    z-index:100;
 }
 #droid {
-	z-index:75;
+    z-index:75;
 }
 </style>
 </head>
 <body>
 
 <div id="droid-container">
-	<div id="droid"></div>
-	<div id="droid-desktop">
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
+    <div id="droid"></div>
+    <div id="droid-desktop">
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
 
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row">
-			<div class="droid-row-item"></div>
-			<div class="droid-row-item">
-				<!--<img class="droid-row-item-bar" src="assets/icon-xkcd.png" />-->
-			</div>
-			<div class="droid-row-item"></div>
-			<div class="droid-row-item"></div>
-		</div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row">
+            <div class="droid-row-item"></div>
+            <div class="droid-row-item">
+                <!--<img class="droid-row-item-bar" src="assets/icon-xkcd.png" />-->
+            </div>
+            <div class="droid-row-item"></div>
+            <div class="droid-row-item"></div>
+        </div>
 
-		<div class="droid-row">
-			<div class="droid-row-item fullrow">
-				<img class="droid-row-item-bar" src="assets/droid-icon-search-bar.png" />
-			</div>
-		</div>
-		<div class="droid-row"></div>
-		<div class="droid-row">
-			<div class="droid-row-item">
-				<img src="assets/droid-icon-market.png" />
-			</div>
-			<div class="droid-row-item"></div>
-			<div class="droid-row-item"></div>
-			<div class="droid-row-item">
-				<img src="assets/droid-icon-sms.png" />
-			</div>
-		</div>
-		<div class="droid-row">
-			<div class="droid-row-item">
-				<img src="assets/droid-icon-map.png" />
-			</div>
-			<div class="droid-row-item">
-				<img src="assets/droid-icon-globe.png" />
-			</div>
-			<div class="droid-row-item"></div>
-			<div class="droid-row-item">
-				<img src="assets/droid-icon-phone.png" />
-			</div>
-		</div>
+        <div class="droid-row">
+            <div class="droid-row-item fullrow">
+                <img class="droid-row-item-bar" src="assets/droid-icon-search-bar.png" />
+            </div>
+        </div>
+        <div class="droid-row"></div>
+        <div class="droid-row">
+            <div class="droid-row-item">
+                <img src="assets/droid-icon-market.png" />
+            </div>
+            <div class="droid-row-item"></div>
+            <div class="droid-row-item"></div>
+            <div class="droid-row-item">
+                <img src="assets/droid-icon-sms.png" />
+            </div>
+        </div>
+        <div class="droid-row">
+            <div class="droid-row-item">
+                <img src="assets/droid-icon-map.png" />
+            </div>
+            <div class="droid-row-item">
+                <img src="assets/droid-icon-globe.png" />
+            </div>
+            <div class="droid-row-item"></div>
+            <div class="droid-row-item">
+                <img src="assets/droid-icon-phone.png" />
+            </div>
+        </div>
 
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
 
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-		<div class="droid-row"></div>
-	</div>
-	<div id="droid-background-mask">
-		<img id="droid-background" src="assets/fuji.png" />
-	</div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+        <div class="droid-row"></div>
+    </div>
+    <div id="droid-background-mask">
+        <img id="droid-background" src="assets/fuji.png" />
+    </div>
 </div>
 
 </body>

@@ -1,164 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>API Demo</title>
-	
-	<meta charset="UTF-8">
-	
-	<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="jquery/jquery-ui/jquery-ui-1.8.4.custom.min.js"></script>
-	<link type="text/css" rel="stylesheet" href="jquery/jquery-ui/hot-sneaks/jquery-ui-1.8.5.custom.css">
-	<script type="text/javascript" src="jquery/jquery.disableTextSelect.js"></script>
-	
-	<script type="text/javascript" src="../jquery.draggable-pagination.js"></script>
-	
-	<style type="text/css">
-	a {
-		text-decoration:none;
-		overflow:auto;
-		color:blue;
-	}
-	li {
-		list-style:none;
-		overflow:auto;
-		margin-bottom:10px;
-		padding:5px 5px 0 5px;
-	}
-	#demo-y {
-		margin:0;
-		padding:0;
-		float:left;
-		overflow:auto;
-	}
-	#demo-y, #buttons-y {
-		width:500px;
-	}	
-	.preview {
-		float:left;
-		margin-right:20px;
-	}
-	#buttons-y {
-		margin-bottom:10px;
-	}
-	#buttons-y button {
-		margin:5px;
-	}
-	</style>
-	<script type="text/javascript">
-	$(function(){
-		var widget = $('#demo-y').paginate({itemsPerPage:4, pageSpacing:0, axis: 'y'}).disableTextSelect();
-		var buttons = $('#buttons-y');
-		var btnPrev = $('<button>PREV</button>').appendTo(buttons).click(function(){ widget.paginate('prev') });
-		var btn1 = $('<button>1</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 0) });
-		var btn2 = $('<button>2</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 1) });
-		var btn3 = $('<button>3</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 2) });
-		var btnNext = $('<button>NEXT</button>').appendTo(buttons).click(function(){ widget.paginate('next') });
-		function refreshButtons(){
-			var page = widget.paginate('page');
-			buttons.children().button('enable').removeClass('ui-state-hover ui-state-active');
-			if (page == 0) {
-				btnPrev.button('disable');
-				btn1.button('disable').addClass('ui-state-active');
-			} else if (page == 1) {
-				btn2.button('disable').addClass('ui-state-active');
-			} else {
-				btn3.button('disable').addClass('ui-state-active');
-				btnNext.button('disable');
-			}
-		}
-		buttons.children().button().click(refreshButtons);
-		widget.bind('page-change', refreshButtons);
-		refreshButtons();
-	});
-	</script>
+    <title>API Demo</title>
+
+    <meta charset="UTF-8">
+
+    <script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui/jquery-ui-1.8.4.custom.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="jquery/jquery-ui/hot-sneaks/jquery-ui-1.8.5.custom.css">
+    <script type="text/javascript" src="jquery/jquery.disableTextSelect.js"></script>
+
+    <script type="text/javascript" src="../jquery.draggable-pagination.js"></script>
+
+    <style type="text/css">
+    a {
+        text-decoration:none;
+        overflow:auto;
+        color:blue;
+    }
+    li {
+        list-style:none;
+        overflow:auto;
+        margin-bottom:10px;
+        padding:5px 5px 0 5px;
+    }
+    #demo-y {
+        margin:0;
+        padding:0;
+        float:left;
+        overflow:auto;
+    }
+    #demo-y, #buttons-y {
+        width:500px;
+    }
+    .preview {
+        float:left;
+        margin-right:20px;
+    }
+    #buttons-y {
+        margin-bottom:10px;
+    }
+    #buttons-y button {
+        margin:5px;
+    }
+    </style>
+    <script type="text/javascript">
+    $(function(){
+        var widget = $('#demo-y').paginate({itemsPerPage:4, pageSpacing:0, axis: 'y'}).disableTextSelect();
+        var buttons = $('#buttons-y');
+        var btnPrev = $('<button>PREV</button>').appendTo(buttons).click(function(){ widget.paginate('prev') });
+        var btn1 = $('<button>1</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 0) });
+        var btn2 = $('<button>2</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 1) });
+        var btn3 = $('<button>3</button>').appendTo(buttons).click(function(){ widget.paginate('goto', 2) });
+        var btnNext = $('<button>NEXT</button>').appendTo(buttons).click(function(){ widget.paginate('next') });
+        function refreshButtons(){
+            var page = widget.paginate('page');
+            buttons.children().button('enable').removeClass('ui-state-hover ui-state-active');
+            if (page == 0) {
+                btnPrev.button('disable');
+                btn1.button('disable').addClass('ui-state-active');
+            } else if (page == 1) {
+                btn2.button('disable').addClass('ui-state-active');
+            } else {
+                btn3.button('disable').addClass('ui-state-active');
+                btnNext.button('disable');
+            }
+        }
+        buttons.children().button().click(refreshButtons);
+        widget.bind('page-change', refreshButtons);
+        refreshButtons();
+    });
+    </script>
 </head>
 <body>
 <div id="buttons-y" class="ui-widget-content ui-corner-all"></div>
 <ul id="demo-y">
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=213/213.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/213.jpg" width="160" height="104" alt="Under the Sea!"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=213/213.css">Under the Sea!</a></h3>
-		<p><a href="http://www.ericstoltz.com">Eric Stoltz</a>, <span class="country">United States</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=212/212.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/212.jpg" width="160" height="104" alt="Make ’em Proud!"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=212/212.css">Make ’em Proud!</a></h3>
-		<p><a href="http://skybased.com">Michael McAghon and Scotty Reifsnyder</a>, <span class="country">United States</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=211/211.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/211.jpg" width="160" height="104" alt="Orchid Beauty"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=211/211.css">Orchid Beauty</a></h3>
-		<p><a href="http://www.kevinaddison.com">Kevin Addison</a>, <span class="country">United States</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=210/210.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/210.jpg" width="160" height="104" alt="Oceanscape"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=210/210.css">Oceanscape</a></h3>
-		<p><a href="http://www.pixel-house.com.au">Justin Gray</a>, <span class="country">Australia</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=209/209.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/209.jpg" width="160" height="104" alt="CSS Co., Ltd."></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=209/209.css">CSS Co., Ltd.</a></h3>
-		<p><a href="http://www.benklemm.de">Benjamin Klemm</a>, <span class="country">Germany</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=208/208.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/208.jpg" width="160" height="104" alt="Sakura"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=208/208.css">Sakura</a></h3>
-		<p><a href="http://www.re-bloom.com/">Tatsuya Uchida</a>, <span class="country">Japan</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=207/207.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/207.jpg" width="160" height="104" alt="Kyoto Forest"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=207/207.css">Kyoto Forest</a></h3>
-		<p><a href="http://rpmdesignfactory.com">John Politowski</a>, <span class="country">United States</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=206/206.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/206.jpg" width="160" height="104" alt="A Walk in the Garden"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=206/206.css">A Walk in the Garden</a></h3>
-		<p><a href="http://users.skynet.be/bk316398/temp.html">Simon Van Hauwermeiren</a>, <span class="country">Belgium</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=205/205.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/205.jpg" width="160" height="104" alt="spring360"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=205/205.css">spring360</a></h3>
-		<p><a href="http://www.renehornig.com/">Rene Hornig</a>, <span class="country">Germany</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=204/204.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/204.jpg" width="160" height="104" alt="Withering Beauty"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=204/204.css">Withering Beauty</a></h3>
-		<p><a href="http://www.wduffy.co.uk/">William Duffy</a>, <span class="country">United Kingdom</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=203/203.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/203.jpg" width="160" height="104" alt="Tiny Blue"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=203/203.css">Tiny Blue</a></h3>
-		<p><a href="http://www.timovirtanen.com/">Timo Virtanen</a>, <span class="country">Finland</span></p>
-	</li>
-	<li>
-		<div class="preview">
-			<a href="http://www.csszengarden.com/?cssfile=202/202.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/202.jpg" width="160" height="104" alt="Retro Theater"></a>
-		</div>
-		<h3><a href="http://www.csszengarden.com/?cssfile=202/202.css">Retro Theater</a></h3>
-		<p><a href="http://space-sheeps.info/">Eric Rogé</a>, <span class="country">France</span></p>
-	</li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=213/213.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/213.jpg" width="160" height="104" alt="Under the Sea!"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=213/213.css">Under the Sea!</a></h3>
+        <p><a href="http://www.ericstoltz.com">Eric Stoltz</a>, <span class="country">United States</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=212/212.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/212.jpg" width="160" height="104" alt="Make ’em Proud!"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=212/212.css">Make ’em Proud!</a></h3>
+        <p><a href="http://skybased.com">Michael McAghon and Scotty Reifsnyder</a>, <span class="country">United States</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=211/211.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/211.jpg" width="160" height="104" alt="Orchid Beauty"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=211/211.css">Orchid Beauty</a></h3>
+        <p><a href="http://www.kevinaddison.com">Kevin Addison</a>, <span class="country">United States</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=210/210.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/210.jpg" width="160" height="104" alt="Oceanscape"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=210/210.css">Oceanscape</a></h3>
+        <p><a href="http://www.pixel-house.com.au">Justin Gray</a>, <span class="country">Australia</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=209/209.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/209.jpg" width="160" height="104" alt="CSS Co., Ltd."></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=209/209.css">CSS Co., Ltd.</a></h3>
+        <p><a href="http://www.benklemm.de">Benjamin Klemm</a>, <span class="country">Germany</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=208/208.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/208.jpg" width="160" height="104" alt="Sakura"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=208/208.css">Sakura</a></h3>
+        <p><a href="http://www.re-bloom.com/">Tatsuya Uchida</a>, <span class="country">Japan</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=207/207.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/207.jpg" width="160" height="104" alt="Kyoto Forest"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=207/207.css">Kyoto Forest</a></h3>
+        <p><a href="http://rpmdesignfactory.com">John Politowski</a>, <span class="country">United States</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=206/206.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/206.jpg" width="160" height="104" alt="A Walk in the Garden"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=206/206.css">A Walk in the Garden</a></h3>
+        <p><a href="http://users.skynet.be/bk316398/temp.html">Simon Van Hauwermeiren</a>, <span class="country">Belgium</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=205/205.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/205.jpg" width="160" height="104" alt="spring360"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=205/205.css">spring360</a></h3>
+        <p><a href="http://www.renehornig.com/">Rene Hornig</a>, <span class="country">Germany</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=204/204.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/204.jpg" width="160" height="104" alt="Withering Beauty"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=204/204.css">Withering Beauty</a></h3>
+        <p><a href="http://www.wduffy.co.uk/">William Duffy</a>, <span class="country">United Kingdom</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=203/203.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/203.jpg" width="160" height="104" alt="Tiny Blue"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=203/203.css">Tiny Blue</a></h3>
+        <p><a href="http://www.timovirtanen.com/">Timo Virtanen</a>, <span class="country">Finland</span></p>
+    </li>
+    <li>
+        <div class="preview">
+            <a href="http://www.csszengarden.com/?cssfile=202/202.css"><img src="http://www.mezzoblue.com/zengarden/screenshots/202.jpg" width="160" height="104" alt="Retro Theater"></a>
+        </div>
+        <h3><a href="http://www.csszengarden.com/?cssfile=202/202.css">Retro Theater</a></h3>
+        <p><a href="http://space-sheeps.info/">Eric Rogé</a>, <span class="country">France</span></p>
+    </li>
 </ul>
 
 </body>
